@@ -1,4 +1,4 @@
-# Benchmarking comparing the implementation of SIR multi-event capture-recapture models in TMB vs. native R
+# Benchmark analysis comparing the implementation of SIR multi-event capture-recapture models in TMB vs. native R
 
 ## Data simulation
 
