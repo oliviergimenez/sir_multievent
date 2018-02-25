@@ -1,2 +1,1 @@
-# sir_multievent
-Contains functions to simulate data from and fit SIR multievent models
+# R and TMB codes for Eco-epidemiological capture-recapture parameter estimates are robust to variation in infection state uncertainty by Sarah Benhaiem, Lucile Marescot, Heribert Hofer, Marion L. East, J-D Lebreton, Stephanie Kramer-Schadt, Olivier Gimenez
