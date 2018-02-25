@@ -1,4 +1,6 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1154931.svg)](https://doi.org/10.5281/zenodo.1154931)
+[![DOI](https://zenodo.org/badge/122840016.svg)](https://zenodo.org/badge/latestdoi/122840016)
+
+
 
 # `R` and `TMB` codes for fitting multievent SIR models to capture-recapture data
 
