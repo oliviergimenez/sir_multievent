@@ -1,12 +1,6 @@
----
-title: Benchmarking comparing the implementation of SIR multi-event capture-recapture
-  models in TMB vs. native R
-output:
-  html_document:
-    keep_md: yes
----
+# Benchmarking comparing the implementation of SIR multi-event capture-recapture models in TMB vs. native R
 
-# Data simulation
+## Data simulation
 
 We first build a function to simulate data from a SIR multi-event capture-recapture model:
 
@@ -169,7 +163,7 @@ return(titi2)
 }
 ```
 
-# Likelihood function in native `R`
+## Likelihood function in native `R`
 
 First a short function to protect the log from "exploding"
 
@@ -279,7 +273,7 @@ devMULTIEVENT <- function(b,data,eff,e,garb,nh,km1){
 }
 ```
 
-# Likelihood function in `TMB`
+## Likelihood function in `TMB`
 
 First, create the model template:
 
@@ -559,7 +553,7 @@ compile("sir_tmb.cpp")
 dyn.load(dynlib("sir_tmb"))
 ```
 
-# Benchmarking
+## Benchmarking
 
 We do some benchmarking by hand. Note that we could have used a more formal approach using the `microbenchmark` package for example.
 We will repeat the simulation and parameter estimation 5 times to evaluate the time it takes to run these steps in `TMB` vs. native `R`.
@@ -644,275 +638,6 @@ for(z in 1:MCiter){
     tab_time[z,2] <- res_tmb
     
     }
-```
-
-```
-## outer mgc:  1494.51 
-## outer mgc:  260.9873 
-## outer mgc:  2388.715 
-## outer mgc:  249.3063 
-## outer mgc:  240.9871 
-## outer mgc:  156.0476 
-## outer mgc:  196.6287 
-## outer mgc:  173.0885 
-## outer mgc:  83.93802 
-## outer mgc:  44.59302 
-## outer mgc:  54.32551 
-## outer mgc:  62.23167 
-## outer mgc:  58.03629 
-## outer mgc:  49.95518 
-## outer mgc:  56.03692 
-## outer mgc:  39.08593 
-## outer mgc:  77.00832 
-## outer mgc:  97.07438 
-## outer mgc:  114.6476 
-## outer mgc:  167.8703 
-## outer mgc:  101.3867 
-## outer mgc:  94.33787 
-## outer mgc:  82.68403 
-## outer mgc:  106.2041 
-## outer mgc:  83.30716 
-## outer mgc:  65.91171 
-## outer mgc:  65.00071 
-## outer mgc:  41.3513 
-## outer mgc:  38.83523 
-## outer mgc:  28.71136 
-## outer mgc:  25.51793 
-## outer mgc:  15.34457 
-## outer mgc:  19.51505 
-## outer mgc:  22.78218 
-## outer mgc:  23.40066 
-## outer mgc:  13.7356 
-## outer mgc:  15.93122 
-## outer mgc:  14.12033 
-## outer mgc:  4.03297 
-## outer mgc:  1.944249 
-## outer mgc:  1.261293 
-## outer mgc:  0.404293 
-## outer mgc:  0.2077742 
-## outer mgc:  0.2964813 
-## outer mgc:  0.1516369 
-## outer mgc:  0.2876795 
-## outer mgc:  0.2650137 
-## outer mgc:  0.2082536 
-## outer mgc:  0.1001712 
-## outer mgc:  0.08147795 
-## outer mgc:  0.12333 
-## outer mgc:  1530.766 
-## outer mgc:  261.3896 
-## outer mgc:  260.7276 
-## outer mgc:  270.4689 
-## outer mgc:  291.9915 
-## outer mgc:  312.7961 
-## outer mgc:  380.5812 
-## outer mgc:  177.673 
-## outer mgc:  130.6905 
-## outer mgc:  119.091 
-## outer mgc:  106.0872 
-## outer mgc:  86.0109 
-## outer mgc:  72.18761 
-## outer mgc:  78.15996 
-## outer mgc:  75.7967 
-## outer mgc:  36.99999 
-## outer mgc:  43.75011 
-## outer mgc:  105.3225 
-## outer mgc:  63.76284 
-## outer mgc:  60.27513 
-## outer mgc:  62.50276 
-## outer mgc:  79.75144 
-## outer mgc:  72.69936 
-## outer mgc:  35.37551 
-## outer mgc:  34.09912 
-## outer mgc:  48.99097 
-## outer mgc:  28.36175 
-## outer mgc:  13.94525 
-## outer mgc:  5.774393 
-## outer mgc:  9.971669 
-## outer mgc:  6.781587 
-## outer mgc:  5.86015 
-## outer mgc:  5.673892 
-## outer mgc:  5.803527 
-## outer mgc:  4.507319 
-## outer mgc:  4.209737 
-## outer mgc:  2.904546 
-## outer mgc:  1.002112 
-## outer mgc:  0.1623214 
-## outer mgc:  0.04144346 
-## outer mgc:  0.1294262 
-## outer mgc:  1.342533 
-## outer mgc:  1.740284 
-## outer mgc:  0.5586181 
-## outer mgc:  0.3950054 
-## outer mgc:  0.676709 
-## outer mgc:  0.7760445 
-## outer mgc:  0.5857662 
-## outer mgc:  0.4157866 
-## outer mgc:  0.3113676 
-## outer mgc:  0.4413554 
-## outer mgc:  0.6707272 
-## outer mgc:  1.491758 
-## outer mgc:  1.7234 
-## outer mgc:  0.9675715 
-## outer mgc:  1.328106 
-## outer mgc:  0.9302313 
-## outer mgc:  1.099889 
-## outer mgc:  0.8010097 
-## outer mgc:  2.167108 
-## outer mgc:  2.16343 
-## outer mgc:  1.732482 
-## outer mgc:  2.212341 
-## outer mgc:  2.223618 
-## outer mgc:  2.391895 
-## outer mgc:  0.6263815 
-## outer mgc:  0.4294523 
-## outer mgc:  0.2546599 
-## outer mgc:  0.1581098 
-## outer mgc:  0.02936748 
-## outer mgc:  0.02794714 
-## outer mgc:  0.008340797 
-## outer mgc:  1307.673 
-## outer mgc:  190.9755 
-## outer mgc:  452.9882 
-## outer mgc:  239.5127 
-## outer mgc:  259.443 
-## outer mgc:  231.5778 
-## outer mgc:  172.6195 
-## outer mgc:  116.7391 
-## outer mgc:  83.0225 
-## outer mgc:  47.50723 
-## outer mgc:  48.73639 
-## outer mgc:  21.4441 
-## outer mgc:  24.23182 
-## outer mgc:  38.84503 
-## outer mgc:  16.05417 
-## outer mgc:  12.2775 
-## outer mgc:  10.46805 
-## outer mgc:  2.219772 
-## outer mgc:  5.520827 
-## outer mgc:  7.221116 
-## outer mgc:  4.504224 
-## outer mgc:  2.242252 
-## outer mgc:  1.743387 
-## outer mgc:  1.195546 
-## outer mgc:  0.9267127 
-## outer mgc:  0.8882692 
-## outer mgc:  1.017257 
-## outer mgc:  0.5554739 
-## outer mgc:  0.4739385 
-## outer mgc:  0.4857425 
-## outer mgc:  0.4809783 
-## outer mgc:  0.2409444 
-## outer mgc:  0.2169449 
-## outer mgc:  0.1643512 
-## outer mgc:  0.07596796 
-## outer mgc:  0.1398887 
-## outer mgc:  0.1195718 
-## outer mgc:  0.0709888 
-## outer mgc:  0.008896112 
-## outer mgc:  0.008809542 
-## outer mgc:  0.05021833 
-## outer mgc:  0.08146955 
-## outer mgc:  0.09754336 
-## outer mgc:  0.08053354 
-## outer mgc:  0.03157755 
-## outer mgc:  0.006591604 
-## outer mgc:  0.01668185 
-## outer mgc:  0.01698102 
-## outer mgc:  0.00819973 
-## outer mgc:  1381.445 
-## outer mgc:  239.1278 
-## outer mgc:  241.5177 
-## outer mgc:  220.0127 
-## outer mgc:  176.9585 
-## outer mgc:  174.8797 
-## outer mgc:  156.0975 
-## outer mgc:  151.6988 
-## outer mgc:  91.22869 
-## outer mgc:  97.85711 
-## outer mgc:  76.96097 
-## outer mgc:  45.61274 
-## outer mgc:  54.70538 
-## outer mgc:  46.00466 
-## outer mgc:  32 
-## outer mgc:  100.2498 
-## outer mgc:  113.2193 
-## outer mgc:  43.77251 
-## outer mgc:  150.5963 
-## outer mgc:  37.32339 
-## outer mgc:  36.20879 
-## outer mgc:  46.41986 
-## outer mgc:  46.1904 
-## outer mgc:  46.29101 
-## outer mgc:  45.8399 
-## outer mgc:  26.71226 
-## outer mgc:  27.46837 
-## outer mgc:  17.66209 
-## outer mgc:  14.47132 
-## outer mgc:  9.780992 
-## outer mgc:  18.98239 
-## outer mgc:  13.19483 
-## outer mgc:  12.53809 
-## outer mgc:  9.676407 
-## outer mgc:  8.156408 
-## outer mgc:  6.366084 
-## outer mgc:  4.004398 
-## outer mgc:  3.803764 
-## outer mgc:  0.8559731 
-## outer mgc:  0.878299 
-## outer mgc:  0.2680634 
-## outer mgc:  0.1246542 
-## outer mgc:  0.4281125 
-## outer mgc:  0.4814843 
-## outer mgc:  0.3130686 
-## outer mgc:  0.1181288 
-## outer mgc:  0.07992162 
-## outer mgc:  0.05851297 
-## outer mgc:  0.02094862 
-## outer mgc:  0.008959037 
-## outer mgc:  1097.55 
-## outer mgc:  268.6841 
-## outer mgc:  268.5449 
-## outer mgc:  258.3604 
-## outer mgc:  228.5439 
-## outer mgc:  221.5505 
-## outer mgc:  263.2446 
-## outer mgc:  252.8912 
-## outer mgc:  248.5706 
-## outer mgc:  112.8767 
-## outer mgc:  101.591 
-## outer mgc:  107.1722 
-## outer mgc:  58.42133 
-## outer mgc:  59.58718 
-## outer mgc:  74.97324 
-## outer mgc:  89.62676 
-## outer mgc:  85.26705 
-## outer mgc:  68.74189 
-## outer mgc:  49.20698 
-## outer mgc:  144.8106 
-## outer mgc:  183.3379 
-## outer mgc:  153.9409 
-## outer mgc:  128.7477 
-## outer mgc:  75.30231 
-## outer mgc:  35.4622 
-## outer mgc:  13.14304 
-## outer mgc:  12.19207 
-## outer mgc:  7.866475 
-## outer mgc:  7.842383 
-## outer mgc:  12.24108 
-## outer mgc:  8.937254 
-## outer mgc:  6.958744 
-## outer mgc:  6.353576 
-## outer mgc:  6.054076 
-## outer mgc:  5.460202 
-## outer mgc:  4.020603 
-## outer mgc:  3.335044 
-## outer mgc:  5.466193 
-## outer mgc:  1.422917 
-## outer mgc:  0.9003633 
-## outer mgc:  0.6288708 
-## outer mgc:  0.2731197 
-## outer mgc:  0.3049809 
-## outer mgc:  0.05112294
 ```
 
 The estimates for $(\phi_S,\phi_I,\phi_R,\beta_{SI},p_S,p_I,p_R,\delta_S,\delta_I,\delta_R)$ we got with `R` are:
