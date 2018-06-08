@@ -1,7 +1,4 @@
 
-
-### Olivier: you can delete this if you think that it's not necessary
-
 # If you have any problem with the function compile() from the TMB package (error status 127), 
 # we recommend to follow the recommendations provided here: https://github.com/nwfsc-assess/geostatistical_delta-GLMM/wiki/Steps-to-install-TMB
 # Alternatively running these 2 lines may work:
